@@ -47,6 +47,11 @@
                 HorizontalAlignment="Right"
                 Command="{Binding AddCommand}"
                 Content="Add" />
+            <TextBlock
+                Margin="0,8,0,0"
+                FontSize="12"
+                Foreground="Green"
+                Text="{Binding StatusMessage}" />
         </StackPanel>
     </Grid>
 </UserControl>

@@ -14,9 +14,12 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
         // Reference to the main ViewModel to access shared data
         private readonly MainViewModel _mainVm;
 
-        // Stores the name of the new activity entered by the user
-        private string _newActivityTitle;
+        // Name of the new activity entered by the user
         public string NewActivityTitle
+        { get; set; }
+
+        // Info message shown to the user
+        public string StatusMessage
         { get; set; }
 
         // Command executed when the user clicks the Add button
@@ -27,7 +30,7 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
             _mainVm = mainVm;
 
             // Defines what happens when the Add button is clicked
-            AddCommand = new RelayCommand(_ =>
+            AddCommand = new RelayCommand(async _ =>
             {
                 if (string.IsNullOrWhiteSpace(NewActivityTitle))
                     return;
@@ -38,10 +41,15 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
                     CreatedAt = DateTime.Now
                 });
 
+                // Show info message
+                StatusMessage = "Activity added to the list";
+
+                // Remove text after activity has been added
                 NewActivityTitle = "";
 
-                // Navigate back to activity list after add
-                // _mainVm.CurrentView = _mainVm.TodoListVm;
+                // Remove StatusMessage after 2 seconds
+                await Task.Delay(2000);
+                StatusMessage = "";
             });
         }
     }
