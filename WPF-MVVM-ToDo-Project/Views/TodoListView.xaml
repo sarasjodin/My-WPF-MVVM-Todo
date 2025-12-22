@@ -25,11 +25,37 @@
                 Foreground="#222222"
                 Text="Activity list" />
 
+            <!--  List headers  -->
+            <Grid Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock FontWeight="Bold" Text="Activity name" />
+
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="8,0,0,0"
+                    FontSize="12"
+                    FontWeight="Bold"
+                    Foreground="#555"
+                    Text="Created" />
+            </Grid>
             <!--  List with activities  -->
             <ListBox x:Name="listBox" ItemsSource="{Binding Todos}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Title}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,4,0"
+                                FontWeight="SemiBold"
+                                Text="{Binding Title}" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="#777"
+                                Text="{Binding CreatedAt, StringFormat={}{0:yyyy-MM-dd HH:mm}}" />
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
