@@ -19,10 +19,7 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
         // Holds the currently active ViewModel
         private BaseViewModel _currentView;
         public BaseViewModel CurrentView
-        {
-            get => _currentView;
-            set => SetProperty(ref _currentView, value);
-        }
+        { get; set; }
 
         // Commands used to switch between views
         public ICommand ShowTodoListCommand { get; }
@@ -35,7 +32,7 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
         public MainViewModel()
         {
             // Create ViewModels for each page
-            TodoListVm = new TodoListViewModel();
+            TodoListVm = new TodoListViewModel(Todos);
             AddTodoVm = new AddTodoViewModel(this);
 
             // Navigation commands

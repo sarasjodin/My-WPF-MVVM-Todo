@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using WPF_MVVM_ToDo_Project.Commands;
+using WPF_MVVM_ToDo_Project.Models;
 
 namespace WPF_MVVM_ToDo_Project.ViewModels
 {
@@ -16,10 +17,7 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
         // Stores the name of the new activity entered by the user
         private string _newActivityTitle;
         public string NewActivityTitle
-        {
-            get => _newActivityTitle;
-            set => SetProperty(ref _newActivityTitle, value);
-        }
+        { get; set; }
 
         // Command executed when the user clicks the Add button
         public ICommand AddCommand { get; }
@@ -31,10 +29,19 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
             // Defines what happens when the Add button is clicked
             AddCommand = new RelayCommand(_ =>
             {
-                // TODO: Add validation for activity name
-                // TODO: Clear input after adding activity
-                // TODO: Navigate back to activity list after add
+                if (string.IsNullOrWhiteSpace(NewActivityTitle))
+                    return;
+
+                _mainVm.Todos.Add(new ToDoItem
+                {
+                    Title = NewActivityTitle,
+                    CreatedAt = DateTime.Now
+                });
+
                 NewActivityTitle = "";
+
+                // Navigate back to activity list after add
+                // _mainVm.CurrentView = _mainVm.TodoListVm;
             });
         }
     }
