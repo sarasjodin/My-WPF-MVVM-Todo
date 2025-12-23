@@ -7,11 +7,11 @@ namespace WPF_MVVM_ToDo_Project.Data
 {  /// <summary>
    /// Handles loading / saving of activities as JSON-file in the user's AppData folder
    /// </summary>
-    public class ToDoRepository
+    public class JsonToDoRepository : IToDoRepository
     {
         private readonly string _filePath; // Path to JSON-filen
 
-        public ToDoRepository()
+        public JsonToDoRepository()
         {
             // Documentations of links checked to understand mpre about %LOCALAPPDATA%
             // https://learn.microsoft.com/en-us/windows/apps/design/app-settings/store-and-retrieve-app-data

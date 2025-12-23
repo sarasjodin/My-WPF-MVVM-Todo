@@ -19,7 +19,8 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
         public ObservableCollection<ToDoItem> Todos { get; }
 
         // Readonly to use a single repository instance
-        private readonly ToDoRepository _repository = new ToDoRepository();
+        // Implementation of Interface repo "contract"
+        private readonly IToDoRepository _repository = new JsonToDoRepository();
 
         // Holds the currently active ViewModel which determines the actual view to display
         public BaseViewModel CurrentView
