@@ -43,7 +43,11 @@
                     Text="Created" />
             </Grid>
             <!--  List with activities  -->
-            <ListBox x:Name="listBox" ItemsSource="{Binding Todos}">
+            <!--  Binding SelectedTodo = To be able to delete a selected todo item in list  -->
+            <ListBox
+                x:Name="listBox"
+                ItemsSource="{Binding Todos}"
+                SelectedItem="{Binding SelectedTodo, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -59,6 +63,12 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <!--  Delete Todo item button added with warning colors  -->
+            <Button
+                Background="LightPink"
+                Command="{Binding DeleteCommand}"
+                Content="Delete selected"
+                Foreground="DarkRed" />
         </StackPanel>
     </Grid>
 </UserControl>
