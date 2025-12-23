@@ -50,11 +50,26 @@
                 SelectedItem="{Binding SelectedTodo, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="0,2" Orientation="Horizontal">
+                            <!--  Checkbox do set a todo item as completed  -->
+                            <CheckBox Margin="0,0,8,0" IsChecked="{Binding IsCompleted, Mode=TwoWay}" />
                             <TextBlock
                                 Margin="0,0,4,0"
                                 FontWeight="SemiBold"
-                                Text="{Binding Title}" />
+                                Text="{Binding Title}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <!--  Styling of completed todo item  -->
+                                            <!--  https://wpf-tutorial.com/tr/93/styles/trigger-datatrigger-eventtrigger/  -->
+                                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                <Setter Property="TextDecorations" Value="Strikethrough" />
+                                                <Setter Property="Opacity" Value="0.6" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                             <TextBlock
                                 FontSize="12"
                                 Foreground="#777"
