@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Windows.Input;
 using WPF_MVVM_ToDo_Project.Commands;
+using WPF_MVVM_ToDo_Project.Data;
 using WPF_MVVM_ToDo_Project.Models;
 
 namespace WPF_MVVM_ToDo_Project.ViewModels
@@ -14,10 +16,12 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
     {
 
         // Collection that stores all Todo-activities
-        public ObservableCollection<ToDoItem> Todos { get; } = new();
+        public ObservableCollection<ToDoItem> Todos { get; }
 
-        // Holds the currently active ViewModel
-        private BaseViewModel _currentView;
+        // Readonly to use a single repository instance
+        private readonly ToDoRepository _repository = new ToDoRepository();
+
+        // Holds the currently active ViewModel which determines the actual view to display
         public BaseViewModel CurrentView
         { get; set; }
 
@@ -31,6 +35,12 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
 
         public MainViewModel()
         {
+            // Implementation of Load saved activities on startup
+            Todos = _repository.Load() ?? new ObservableCollection<ToDoItem>();
+
+            // autosave när listan ändras (Add/Remove/Clear)
+            Todos.CollectionChanged += Todos_CollectionChanged;
+
             // Create ViewModels for each page
             TodoListVm = new TodoListViewModel(Todos);
             AddTodoVm = new AddTodoViewModel(this);
@@ -41,9 +51,12 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
 
             // Set start page
             CurrentView = TodoListVm;
+        }
 
-            // TODO: Load saved activities on startup
-            // TODO: Save when ObservableCollection changes
+        // Implementation of Save when ObservableCollection changes
+        private void Todos_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            _repository.Save(Todos);
         }
     }
 }
