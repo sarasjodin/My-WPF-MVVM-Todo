@@ -29,10 +29,11 @@ namespace WPF_MVVM_ToDo_Project.Commands
         }
 
         // WPF listens to this event to update the enabled/disabled state of controls
-        public event EventHandler CanExecuteChanged
+        public event EventHandler CanExecuteChanged;
+
+        public void RaiseCanExecuteChanged()
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
 
     }

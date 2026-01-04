@@ -5,11 +5,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WPF_MVVM_ToDo_Project"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
-    Width="800"
-    Height="450"
+    Title="Sara's C# WPF MVVM 'Planify' – yet another Todo application."
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
     mc:Ignorable="d">
     <!--  Application shell  -->
+    <!--  https://learn.microsoft.com/en-us/dotnet/desktop/wpf/controls/styles-templates-overview?source=recommendations  -->
+    <!--  https://wpf-tutorial.com/control-concepts/tooltips/  -->
+    <!--  Not implemented but interesting...:  -->
+    <!--  https://intellitect.com/blog/getting-started-material-design-in-xaml/  -->
+    <!--  To check out in the fututer...:  -->
+    <!--  https://mahapps.com/  -->
     <Grid>
         <!--  Top navigation and main area  -->
         <Grid.RowDefinitions>
@@ -18,20 +24,31 @@
         </Grid.RowDefinitions>
 
         <!--  Navigation menu  -->
-        <StackPanel Margin="8" Orientation="Horizontal">
+        <StackPanel
+            Margin="8"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
             <!--  Activity list view / standard  -->
             <Button
-                Margin="8"
+                Width="180"
+                Height="50"
+                Margin="16"
                 Command="{Binding ShowTodoListCommand}"
-                Content="Aktivitetslista" />
+                Content="Show Activity list" />
             <!--  Add activity view  -->
             <Button
-                Margin="8"
+                Width="180"
+                Height="50"
+                Margin="16"
                 Command="{Binding ShowAddTodoCommand}"
-                Content="Lägg till" />
+                Content="Add activity" />
         </StackPanel>
 
         <!--  Displays the currently active view  -->
-        <ContentControl Grid.Row="1" Content="{Binding CurrentView}" />
+        <ContentControl
+            Grid.Row="1"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Top"
+            Content="{Binding CurrentView}" />
     </Grid>
 </Window>

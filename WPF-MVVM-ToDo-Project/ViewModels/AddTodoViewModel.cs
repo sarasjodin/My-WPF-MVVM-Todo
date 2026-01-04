@@ -15,12 +15,20 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
         private readonly MainViewModel _mainVm;
 
         // Name of the new activity entered by the user
+        private string _newActivityTitle = "";
         public string NewActivityTitle
-        { get; set; }
+        {
+            get => _newActivityTitle;
+            set => SetProperty(ref _newActivityTitle, value);
+        }
 
         // Info message shown to the user
+        private string _statusMessage = "";
         public string StatusMessage
-        { get; set; }
+        {
+            get => _statusMessage;
+            set => SetProperty(ref _statusMessage, value);
+        }
 
         // Command executed when the user clicks the Add button
         public ICommand AddCommand { get; }
@@ -35,6 +43,7 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
                 if (string.IsNullOrWhiteSpace(NewActivityTitle))
                     return;
 
+                // Each new activity combined with its creation date
                 _mainVm.Todos.Add(new ToDoItem
                 {
                     Title = NewActivityTitle,
@@ -42,12 +51,13 @@ namespace WPF_MVVM_ToDo_Project.ViewModels
                 });
 
                 // Show info message
-                StatusMessage = "Activity added to the list";
+                StatusMessage = $"\"{NewActivityTitle}\" added to the list.";
 
                 // Remove text after activity has been added
                 NewActivityTitle = "";
 
                 // Remove StatusMessage after 2 seconds
+                // Async delay
                 await Task.Delay(2000);
                 StatusMessage = "";
             });

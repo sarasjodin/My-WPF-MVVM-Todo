@@ -52,7 +52,7 @@ namespace WPF_MVVM_ToDo_Project.Data
             }
             catch
             {
-                return new ObservableCollection<ToDoItem>(); // Problem with file? Returns empty collection.
+                return new ObservableCollection<ToDoItem>(); // Problem with file? Returns empty collection to make the app start.
             }
         }
 

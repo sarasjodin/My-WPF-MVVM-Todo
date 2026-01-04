@@ -10,6 +10,7 @@ namespace WPF_MVVM_ToDo_Project.Data
     public interface IToDoRepository
     {
         // Contract says to load all saved ToDoItems and return them as one complete ObservableCollection
+        // Load returns always a collection (even if empty). If error = empty list.
         ObservableCollection<ToDoItem> Load();
 
         // Contract says to save the current list of ToDoItems and replace any previously saved data

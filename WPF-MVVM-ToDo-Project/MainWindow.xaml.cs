@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using WPF_MVVM_ToDo_Project.ViewModels;
 
 namespace WPF_MVVM_ToDo_Project
 {
@@ -11,9 +10,6 @@ namespace WPF_MVVM_ToDo_Project
         public MainWindow()
         {
             InitializeComponent();
-
-            // Set the MainViewModel as DataContext for data binding
-            DataContext = new MainViewModel();
         }
     }
 }
