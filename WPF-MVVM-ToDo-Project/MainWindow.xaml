@@ -16,7 +16,7 @@
     <!--  https://intellitect.com/blog/getting-started-material-design-in-xaml/  -->
     <!--  To check out in the fututer...:  -->
     <!--  https://mahapps.com/  -->
-    <Grid>
+    <Grid Background="#FFF2F2F2">
         <!--  Top navigation and main area  -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -28,20 +28,50 @@
             Margin="8"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
+            <!--  My app logo  -->
+            <Image
+                Height="38"
+                Margin="8,0,4,0"
+                VerticalAlignment="Center"
+                Source="/Assets/Images/planify_logo.png" />
+            <!--  App name  -->
+            <TextBlock
+                Margin="4,0,500,0"
+                VerticalAlignment="Center"
+                FontSize="40"
+                FontWeight="Bold"
+                Foreground="#00B8D3"
+                Text="Planify" />
             <!--  Activity list view / standard  -->
             <Button
                 Width="180"
                 Height="50"
                 Margin="16"
-                Command="{Binding ShowTodoListCommand}"
-                Content="Show Activity list" />
-            <!--  Add activity view  -->
+                Command="{Binding ShowTodoListCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,5,12,0"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontWeight="Bold"
+                        Text="&#xE700;" />
+                    <TextBlock FontSize="16" Text="Show Activity list" />
+                </StackPanel>
+            </Button>
+
             <Button
                 Width="180"
                 Height="50"
                 Margin="16"
-                Command="{Binding ShowAddTodoCommand}"
-                Content="Add activity" />
+                Command="{Binding ShowAddTodoCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,5,12,0"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontWeight="Bold"
+                        Text="&#xE710;" />
+                    <TextBlock FontSize="16" Text="Add activity" />
+                </StackPanel>
+            </Button>
         </StackPanel>
 
         <!--  Displays the currently active view  -->

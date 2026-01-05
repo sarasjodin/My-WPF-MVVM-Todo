@@ -110,22 +110,40 @@
                 Margin="0,12,0,12"
                 HorizontalAlignment="Right"
                 Orientation="Horizontal">
+                <!--  Delete Todo item button added with warning colors  -->
+                <Button
+                    Width="120"
+                    Height="30"
+                    Margin="0,12,12,12"
+                    Background="LightPink"
+                    Command="{Binding DeleteCommand}"
+                    Foreground="DarkRed">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0,3,12,0"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontWeight="Bold"
+                            Foreground="DarkRed"
+                            Text="&#xE70F;" />
+                        <TextBlock Text="Delete activity" />
+                    </StackPanel>
+                </Button>
+
                 <!--  Edit Todo item button  -->
                 <Button
                     Width="120"
                     Height="30"
                     Margin="0,12,12,12"
-                    Command="{Binding EditCommand}"
-                    Content="Edit activity" />
-
-                <!--  Delete Todo item button added with warning colors  -->
-                <Button
-                    Width="120"
-                    Height="30"
-                    Background="LightPink"
-                    Command="{Binding DeleteCommand}"
-                    Content="Delete activity"
-                    Foreground="DarkRed" />
+                    Command="{Binding EditCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0,3,12,0"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontWeight="Bold"
+                            Text="&#xE70F;" />
+                        <TextBlock Text="Edit activity" />
+                    </StackPanel>
+                </Button>
             </StackPanel>
 
             <!--  Info text  -->

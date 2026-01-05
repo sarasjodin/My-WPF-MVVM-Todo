@@ -51,8 +51,16 @@
                 Width="150"
                 Height="30"
                 HorizontalAlignment="Right"
-                Command="{Binding AddCommand}"
-                Content="Add new activity" />
+                Command="{Binding AddCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,3,12,0"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontWeight="Bold"
+                        Text="&#xE74E;" />
+                    <TextBlock Text="Add new activity" />
+                </StackPanel>
+            </Button>
 
         </StackPanel>
     </Grid>
